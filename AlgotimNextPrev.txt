@@ -1,0 +1,25 @@
+	var array = providencias; 	--array
+        var Max = providencias.length;  --identificando tamanho do array
+        let ListaNext = 0;    		--valor do proximo iniciando com 0
+
+        
+        array.map((x, i) => x.Id == idsProvidencia ? ListaNext = i : null); --identificando a posição do item do array selecionado e modificando o parametro ListaNext
+        $scope.canPrev = ListaNext > 0;   -- verifica se pode voltar
+        $scope.canNext = ListaNext < (Max - 1); --verifica se tem proximo
+
+        $scope.Next = () => {
+            $scope.providencia = array[ListaNext + 1];   --atribui o proximo dado ao Array
+
+            ListaNext++;  --soma mais um na contagem do controlador ListaNext
+            $scope.canPrev = ListaNext > 0;
+            $scope.canNext = ListaNext < (Max - 1);
+        };
+
+        $scope.Prev = () => {
+
+            $scope.providencia = array[ListaNext - 1];
+
+            ListaNext--;
+            $scope.canPrev = ListaNext > 0;
+            $scope.canNext = ListaNext < (Max - 1);
+        };
